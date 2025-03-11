@@ -32,7 +32,7 @@ const blogPosts = [
 export default function BlogPage() {
   return (
     <div className="container mx-auto px-4 py-12">
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-4xl mx-auto mt-5">
         <h1 className="text-3xl font-bold mb-8">Blog</h1>
 
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">

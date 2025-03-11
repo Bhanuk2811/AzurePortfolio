@@ -66,7 +66,7 @@ export default function Home() {
         {/* Scroll Down Indicator */}
   
         <ScrollDownIndicator />
-      <section id="blog" className="max-w-2xl mx-auto mb-16">
+      <section id="blog" className="max-w-2xl mx-auto mb-16 mt-15">
       <BlogPage/>
       </section>
 
