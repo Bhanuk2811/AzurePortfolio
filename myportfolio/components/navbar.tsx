@@ -17,12 +17,12 @@ export default function Navbar() {
 
   return (
     <header className="w-full py-6 relative z-20">
-      <div className="container flex items-center justify-between">
-        <Link href="/" className="font-bold text-xl">
+      <div className="container flex items-center justify-end">
+        <Link href="/" className="font-bold text-2xl absolute top-6.5 left-10">
           Bhanu Kaushal
         </Link>
 
-        <nav className="flex items-center gap-8">
+        <nav className="flex items-center gap-9">
           {navItems.map((item) => (
             <Link
               key={item.path}

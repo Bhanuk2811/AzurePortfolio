@@ -6,7 +6,7 @@ export default function Footer() {
       <div className="container flex flex-col items-center justify-center gap-4">
         <SocialLinks />
         <p className="text-center text-sm text-muted-foreground">
-          Built and maintained by <span className="font-medium">YourName</span>
+          Built and maintained by <span className="font-medium">BhanuKaushal</span>
         </p>
       </div>
     </footer>
