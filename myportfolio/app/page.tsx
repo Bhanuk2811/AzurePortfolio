@@ -3,7 +3,9 @@ import { TechIcons } from "@/components/tech-icons";
 import { Mouse, ArrowUp } from "lucide-react";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import BlogPage from "./blog/page"
+import ResumePage from "./blog/page"
+import ProjectsPage from "./projects/page";
+
 
 const ScrollToTop = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -50,7 +52,7 @@ const ScrollDownIndicator = () => {
 export default function Home() {
   return (
     <div className="relative container mx-auto px-4 py-12">
-      <section className="max-w-2xl mx-auto mb-16">
+      <section className="max-w-4xl mx-auto mb-16">
         <h1 className="text-3xl font-bold mb-8">About</h1>
         <div className="space-y-6 text-lg">
           <p>
@@ -61,15 +63,20 @@ export default function Home() {
           </p>
        
         </div>
-        
+ 
       </section>
         {/* Scroll Down Indicator */}
   
         <ScrollDownIndicator />
-      <section id="blog" className="max-w-2xl mx-auto mb-16 mt-15">
-      <BlogPage/>
+        <section id="blog" className="max-w-4xl mx-auto mb-16">
+      <ResumePage/>
       </section>
+      <section id="projects" className="max-w-4xl mx-auto mb-16">
+      <ProjectsPage/>
+      </section>
+      
 
+      
       <section className="max-w-2xl mx-auto mb-16">
         <TechIcons />
       </section>
@@ -77,6 +84,7 @@ export default function Home() {
     
       {/* Scroll Up Button */}
       <ScrollToTop />
+      
     </div>
   );
 }

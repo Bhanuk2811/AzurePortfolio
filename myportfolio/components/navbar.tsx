@@ -4,21 +4,20 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { cn } from "@/lib/utils"
 import { ModeToggle } from "./mode-toggle"
-
+import { HyperText } from "./magicui/hyper-text";
 export default function Navbar() {
   const pathname = usePathname()
 
   const navItems = [
     { name: "About", path: "/" },
-    { name: "Projects", path: "/projects" },
-    { name: "Blog", path: "/blog" },
-    { name: "Photos", path: "/photos" },
+    { name: "Projects", path: "#projects" },
+    { name: "Blog", path: "#blog" }
   ]
 
   return (
     <header className="w-full py-6 relative z-20">
       <div className="container flex items-center justify-end">
-        <Link href="/" className="font-bold text-2xl absolute top-6.5 left-10">
+        <Link href="/" className="font-bold text-xl absolute top-6.5 left-10">
           Bhanu Kaushal
         </Link>
 
