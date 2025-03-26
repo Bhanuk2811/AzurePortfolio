@@ -2,10 +2,10 @@
 import { TechIcons } from "@/components/tech-icons";
 import { Mouse, ArrowUp } from "lucide-react";
 import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { HyperText } from "../components/magicui/hyper-text";
 import ResumePage from "./blog/page"
 import ProjectsPage from "./projects/page";
-
 
 const ScrollToTop = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -48,43 +48,102 @@ const ScrollDownIndicator = () => {
   );
 };
 
-
 export default function Home() {
-  return (
-    <div className="relative container mx-auto px-4 py-12">
-      <section className="max-w-4xl mx-auto mb-16">
-        <h1 className="text-3xl font-bold mb-8">About</h1>
-        <div className="space-y-6 text-lg">
-          <p>
-            I’m Bhanu Kaushal, a fourth-year Bachelor of Computer Information Systems student at the University of the Fraser Valley, with a strong interest in data analytics, DevOps, and cloud computing. I’m driven to create scalable, user-friendly solutions and continuously expand my technical expertise.
-          </p>
-          <p>
-            My projects demonstrate skills in app development, usability testing, and system design, including a student information management system and a community-focused non-profit website. With a keen focus on cloud technologies, I’m eager to explore new methods of optimizing data and application management.
-          </p>
-       
-        </div>
- 
-      </section>
-        {/* Scroll Down Indicator */}
+  const { scrollYProgress } = useScroll();
   
-        <ScrollDownIndicator />
-        <section id="blog" className="max-w-4xl mx-auto mb-16">
-      <ResumePage/>
-      </section>
-      <section id="projects" className="max-w-4xl mx-auto mb-16">
-      <ProjectsPage/>
-      </section>
-      
+  // Variants for section animations
+  const sectionVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: "easeOut"
+      }
+    }
+  };
 
-      
-      <section className="max-w-2xl mx-auto mb-16">
+  return (
+    <div className="relative container mx-auto px-4 py-20">
+      <motion.section 
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }}
+        variants={sectionVariants}
+        className="max-w-4xl mx-auto mb-16"
+      >
+        <h1 className="text-4xl font-bold mb-10"><HyperText children={"About"}/></h1>
+        <div className="space-y-6 text-lg">
+          <motion.p
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.2, duration: 0.5 }}
+          >
+            I'm Bhanu Kaushal, a fourth-year Bachelor of Computer Information Systems student at the University of the Fraser Valley, with a strong interest in data analytics, DevOps, and cloud computing. I'm driven to create scalable, user-friendly solutions and continuously expand my technical expertise.
+          </motion.p>
+          <motion.p
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.4, duration: 0.5 }}
+          >
+            My projects demonstrate skills in app development, usability testing, and system design, including a student information management system and a community-focused non-profit website. With a keen focus on cloud technologies, I'm eager to explore new methods of optimizing data and application management.
+          </motion.p>
+        </div>
+      </motion.section>
+
+      {/* Scroll Down Indicator */}
+      <ScrollDownIndicator />
+
+      <motion.section 
+        id="blog"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }}
+        variants={sectionVariants}
+        className="max-w-4xl mx-auto mb-16"
+      >
+        <ResumePage/>
+      </motion.section>
+
+      <motion.section 
+        id="projects"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }}
+        variants={sectionVariants}
+        className="max-w-4xl mx-auto mb-16"
+      >
+        <ProjectsPage/>
+      </motion.section>
+
+      <motion.section 
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }}
+        variants={sectionVariants}
+        className="max-w-2xl mx-auto mb-16"
+      >
         <TechIcons />
-      </section>
-      
-    
+      </motion.section>
+
       {/* Scroll Up Button */}
       <ScrollToTop />
-      
+
+      {/* Progress Bar */}
+      <motion.div 
+        style={{ 
+          scaleX: scrollYProgress,
+          transformOrigin: 'left center',
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          height: '4px',
+          background: 'black',
+          zIndex: 100
+        }} 
+      />
     </div>
   );
 }
