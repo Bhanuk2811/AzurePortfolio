@@ -132,18 +132,15 @@ export default function Home() {
 
       {/* Progress Bar */}
       <motion.div 
-        style={{ 
-          scaleX: scrollYProgress,
-          transformOrigin: 'left center',
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          right: 0,
-          height: '4px',
-          background: 'black',
-          zIndex: 100
-        }} 
-      />
+  className="fixed top-0 left-0 right-0 h-1 z-50"
+  style={{ 
+    scaleX: scrollYProgress, 
+    transformOrigin: "left center",
+    background: "white",
+    boxShadow: "0px 0px 10px rgba(255,255,255,0.8)"
+  }} 
+/>
+
     </div>
   );
 }
