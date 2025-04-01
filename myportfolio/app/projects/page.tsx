@@ -1,63 +1,84 @@
-import Image from "next/image"
-import Link from "next/link"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
+import Image from "next/image";
+import Link from "next/link";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 
-// Mock projects data
+// Updated Project Data with Correct Image Paths
 const projects = [
   {
     id: 1,
-    title: "E-commerce Platform",
-    description: "A full-featured e-commerce platform built with Next.js and Stripe",
-    image: "/placeholder.svg?height=300&width=600",
-    tags: ["Next.js", "TypeScript", "Stripe", "Tailwind CSS"],
-    link: "#",
+    title: "Online Image Editor",
+    description: "A full-featured Image Editor platform built with JavaScript.",
+    image: "/images/img-editor.png", // Ensure it's inside the 'public/images' folder
+    tags: ["React.js", "JavaScript", "Tailwind CSS"],
+    link: "https://online-image.vercel.app/",
   },
   {
     id: 2,
     title: "Task Management App",
-    description: "A productivity app for managing tasks and projects",
-    image: "/placeholder.svg?height=300&width=600",
+    description: "A productivity app for managing tasks and projects.",
+    image: "/images/task-manager-ui.png",
     tags: ["React", "Firebase", "Tailwind CSS"],
-    link: "#",
+    link: "https://your-task-app.com",
   },
   {
     id: 3,
     title: "Personal Blog",
-    description: "A blog built with Next.js and MDX for content management",
-    image: "/placeholder.svg?height=300&width=600",
+    description: "A blog built with Next.js and MDX for content management.",
+    image: "/images/blog-preview.jpg",
     tags: ["Next.js", "MDX", "Tailwind CSS"],
-    link: "#",
+    link: "https://your-blog.com",
   },
-]
+];
 
 export default function ProjectsPage() {
   return (
-    <div className="container mx-auto px-4 py-12">
-      <div className="max-w-4xl mx-auto">
-        <h1 className="text-3xl font-bold mb-8">Projects</h1>
+    <div className="container mx-auto px-6 py-12">
+      <div className="max-w-3xl mx-auto">
+        <h1 className="text-4xl font-bold text-center mb-10">
+          My Projects
+        </h1>
 
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+        <div className="flex flex-col gap-8">
           {projects.map((project) => (
-            <Card key={project.id} className="bg-background border border-gray-800">
-              <div className="relative h-48 w-full">
-                <Image src={project.image || "/placeholder.svg"} alt={project.title} fill className="object-cover" />
+            <Card
+              key={project.id}
+              className="border border-gray-800 shadow-lg rounded-lg hover:shadow-xl transition duration-300"
+            >
+              <div className="relative h-60 w-full rounded-t-lg overflow-hidden">
+                <Image
+                  src={project.image}
+                  alt={project.title}
+                  width={800}
+                  height={800}
+                  className="object-cover rounded-lg"
+                />
               </div>
-              <CardHeader>
-                <CardTitle>{project.title}</CardTitle>
-                <CardDescription>{project.description}</CardDescription>
+              <CardHeader className="p-6">
+                <CardTitle className="text-2xl font-semibold">{project.title}</CardTitle>
+                <CardDescription className="text-lg">{project.description}</CardDescription>
               </CardHeader>
-              <CardContent className="flex-grow">
+              <CardContent className="px-6 pb-4">
                 <div className="flex flex-wrap gap-2">
                   {project.tags.map((tag) => (
-                    <Badge key={tag} variant="secondary">
+                    <Badge key={tag} variant="secondary" className="text-sm">
                       {tag}
                     </Badge>
                   ))}
                 </div>
               </CardContent>
-              <CardFooter>
-                <Link href={project.link} className="text-sm font-medium text-primary hover:underline">
+              <CardFooter className="p-6">
+                <Link
+                  href={project.link}
+                  className="text-lg font-medium text-primary hover:underline"
+                >
                   View Project →
                 </Link>
               </CardFooter>
@@ -66,6 +87,5 @@ export default function ProjectsPage() {
         </div>
       </div>
     </div>
-  )
+  );
 }
-
